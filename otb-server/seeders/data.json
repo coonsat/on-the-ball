@@ -1,0 +1,80 @@
+{
+    "users": [
+        {
+            "firstName": "Andrew",
+            "lastName": "Cooney",
+            "emailAddress": "andscool@hotmail.com",
+            "password": "test123"
+        },
+        {
+            "firstName": "Michael",
+            "lastName": "Mayer",
+            "emailAddress": "andscool@hotmail.com",
+            "password": "test123"
+        },
+        {
+            "firstName": "Robert",
+            "lastName": "Mayer",
+            "emailAddress": "andscool@hotmail.com",
+            "password": "test123"
+        }
+    ],
+    "customer": [
+        {
+            "firstName": "Maximillian",
+            "lastName": "Muester",
+            "emailAddress": "andscool@hotmail.com",
+            "password": "test123"
+        },
+        {
+            "firstName": "Tobias",
+            "lastName": "Muester",
+            "emailAddress": "andscool@hotmail.com",
+            "password": "test123"
+        },
+        {
+            "firstName": "Rebecca",
+            "lastName": "Muester",
+            "emailAddress": "andscool@hotmail.com",
+            "password": "test123"
+        }
+    ],
+    "contract": [
+        {
+            "name": "Test Contract 1",
+            "content": "Some contract info to come",
+            "startDate": "01-02-2021",
+            "endDate": "01-06-2021",
+            "totalSessions": "10",
+            "userId": 1,
+            "customerId": 1
+        },
+        {
+            "name": "Test Contract 2",
+            "content": "Some contract info to come",
+            "startDate": "01-02-2021",
+            "endDate": "01-06-2021",
+            "totalSessions": "10",
+            "userId": 2,
+            "customerId": 2
+        },
+        {
+            "name": "Test Contract 3",
+            "content": "Some contract info to come",
+            "startDate": "01-02-2021",
+            "endDate": "01-06-2021",
+            "totalSessions": "10",
+            "userId": 3,
+            "customerId": 3
+        },
+        {
+            "name": "Test Contract 4",
+            "content": "Some contract info to come",
+            "startDate": "01-02-2021",
+            "endDate": "01-06-2021",
+            "totalSessions": "10",
+            "userId": 1,
+            "customerId": 2
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "f90f123d-fb4a-4f12-a2cc-15b91776e931",
+		"name": "User Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create new user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Harry\",\r\n    \"lastName\": \"Mayer\",\r\n    \"emailAddress\": \"andscool@hotmail.com\",\r\n    \"password\": \"test123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{server}}/api/v1/usermanagement",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{server}}",
+					"path": [
+						"api",
+						"v1",
+						"usermanagement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

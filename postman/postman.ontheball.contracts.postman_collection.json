@@ -1,0 +1,36 @@
+{
+	"info": {
+		"_postman_id": "a9c1406d-5ac5-4d50-9609-e3605bdd5637",
+		"name": "Contracts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get User Contracts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:{{server}}/api/v1/contracts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{server}}",
+					"path": [
+						"api",
+						"v1",
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

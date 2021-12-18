@@ -1,0 +1,43 @@
+.button {
+    font-size: 1rem;
+    padding: .75rem 1.5rem;
+    border: 0;
+    margin: 0 0 .5rem 0;
+    display: block;
+    text-align: center;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.small {
+
+}
+
+.medium {
+    width: 210px;
+}
+
+.large {
+    width: 100%;
+}
+
+.success {
+    background-color: $success;
+}
+
+.error {
+    background-color: $error;
+}
+
+.warning {
+    background-color: $warning;
+}
+
+.default {
+    background-color: $default;
+}
+
+.primary {
+    background-color: $primary;
+}
