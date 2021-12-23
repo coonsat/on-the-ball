@@ -2,7 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // internal import
-import { sidebarData } from '../helper/SidebarData';
+import { menuData } from '../helper/menu';
+// import { sidebarData } from '../helper/SidebarData';
+
+
+// temp import
+import testImage from '../resources/cc_3.jpg';
+import Logo from '../resources/Logo.png';
 
 const Home = () => {
 
@@ -12,26 +18,36 @@ const Home = () => {
         <div className="home-container">
             <div className="menu-container">
                 <div className="menu-header">
-                    logo menu header
+                    MTB
                 </div>
 
                 <div className="menu-contents">
-                    {sidebarData.map((item, index) => 
-                        <Link to={`/${item.path}`} key={index}>
+                    <h2>Menu -</h2><br />
+                    {menuData.map((item, index) => 
+                        <Link to={`/#${item.path}`} key={index} className="nav-links">
                             <h2>{item.title}</h2>
-                            <p>{index + 1}</p>
+                            <p>0{index + 1}</p>
                             <br />
-                        </Link>)}
+                        </Link>)
+                    }
                 </div>
 
                 <div className="menu-footer">
-                    menu footer
+                    <img src={Logo} className="company-logo"/>
+                    <div className="column-first">
+                        FAQ <br />
+                        Impressum
+                    </div>
+                    <div className="column-second">
+                        Contact <br />
+                        Terms
+                    </div>
                 </div>
 
             </div>
 
             <div className="gallery-container">
-                Image gallery
+                <img src={testImage} className="gallery-image"/>
             </div>
 
         </div>

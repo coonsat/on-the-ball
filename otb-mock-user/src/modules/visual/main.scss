@@ -1,0 +1,21 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #ebebeb;
+}
+
+
+@import './variables.scss';
+
+// Components import
+@import './1_components/menu.scss';
+@import './1_components/list';
+@import './1_components/image';
+
+
+// Layout import 
+@import './3_layout/container';
+
+

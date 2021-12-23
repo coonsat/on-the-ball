@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
-import { Address } from '../helper/api';
+import { credentials } from '../config/credentials';
+import ApiHelper from '../helper/api';
 
-const Context = React.createContext();
+export const Context = React.createContext();
 
 export class Provider extends Component {
 
     constructor() {
         super();
         this.cookie = Cookies.get('usersession');
+        this.helper = new ApiHelper();
     }
 
     state = {
@@ -25,7 +27,10 @@ export class Provider extends Component {
             actions: {
                 signIn: this.signIn,
                 signOut: this.signOut,
-                getSchedule: this.getSchedule
+                getSchedule: this.getSchedule,
+                // getAbout: this.getAbout,
+                // getEvents: this.getEvents,
+                // getContacts: this.getContacts
             }
         };
 
@@ -40,7 +45,13 @@ export class Provider extends Component {
 
     signOut = async () => {};
 
-    getSchedule = async () => {};
+    getSchedule = async (filters) => {
+        // need filters here for extra functionality
+        const body = {};
+        body.filters = filters;
+        body.business = credentials;
+        return await this.helper('/schedule', 'GET', body, false, false)
+    };
 
 };
 
