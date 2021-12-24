@@ -43,26 +43,26 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     endDate: {
-        type: DataTypes.DATEONLY,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'A contract needs an end date'
-          },
-          notEmpty: {
-            msg: 'A contract needs an end date'
-          }
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'A contract needs an end date'
+        },
+        notEmpty: {
+          msg: 'A contract needs an end date'
         }
-      },
-      totalSessions: {
-          type: DataTypes.DECIMAL,
-          allowNull: false,
-          validation: {
-              notNull: {
-                  msg: 'The number of sessions needs to be defined'
-              }
+      }
+    },
+    totalSessions: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validation: {
+          notNull: {
+              msg: 'The number of sessions needs to be defined'
           }
       }
+    }
   },
   {
     sequelize,
