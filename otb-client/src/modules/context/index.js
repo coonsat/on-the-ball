@@ -5,6 +5,11 @@ import api from '../helper/api';
 const Context = React.createContext();
 
 export class Provider extends Component {
+
+    state = {
+        authenticatedUser : Cookies.get('otb-client') ? JSON.parse(Cookies.get('otb-client')) : null
+    }
+
     constructor() {
         super();
         this.cookie = Cookies.get('otb-client-authenticate');
@@ -14,11 +19,14 @@ export class Provider extends Component {
         this.api = new api();
     }
 
-    state = {
-        authenticatedUser : null
-    }
-
     login = async ( emailAddress, password ) => {};
+
+    logout = () => {
+        this.setState({
+            authenticatedUser: null
+        });
+        Cookies.remove('otb-client');
+    }
 
     render() {
         const authenticatedUser = this.state;
@@ -26,7 +34,8 @@ export class Provider extends Component {
             authenticatedUser,
             api: this.api,
             actions: {
-                login: this.login
+                login: this.login,
+                logout: this.logout
             }
         };
 
@@ -40,3 +49,16 @@ export class Provider extends Component {
 };
 
 export const Consumer = Context.Consumer;
+
+export function withContext(Component) {
+    return function ContextComponent(props) {
+        return (
+            <Context.Consumer>
+                {context => <Component {...props} context={context} />}
+            </Context.Consumer>
+        );
+    };
+};
+
+const contextObjects = {withContext, Context};
+export default contextObjects;
