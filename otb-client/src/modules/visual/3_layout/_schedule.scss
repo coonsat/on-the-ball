@@ -1,0 +1,36 @@
+.schedule-control {
+    height: 60px;
+    border: 2px solid $sidebar-bgcolor;
+}
+
+.button-view-container {
+    width: 250px;
+    display: inline-block;
+}
+
+.selected-button {
+    background: $primary;
+}
+
+.search {
+    width: 200px;
+    display: inline-block;
+}
+
+.bookings-container {
+    width: 100%;
+    display: flex;
+    padding: 15px; 
+    border: 2px solid red;
+}
+
+.bookings-view {
+    width: 65%;
+    height: 750px;
+    border: 2px solid black;
+}
+
+.bookings-detail {
+    width: 30%;
+    border: 2px solid black;
+}
