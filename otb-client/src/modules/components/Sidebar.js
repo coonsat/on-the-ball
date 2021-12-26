@@ -20,22 +20,31 @@ const Sidebar = () => {
     return (
         <div className={`sidebar-wrapper-${toggle ? 'open' : 'closed'}`}>
             <div className="sidebar-header">
-                <AiOutlineMenu onClick={() => setToggle(!toggle)}/>
+                <AiOutlineMenu className="toggle" onClick={() => setToggle(!toggle)}/>
                 <div className={`sidebar-header-contents ${!toggle ? 'hide' : ''}`}>
                     <h3>On The Ball</h3>
-                    <img src={otb}
+                    {/* <img src={otb}
                         alt="On The Ball"
                         className="sidebar-icon"
-                    />
+                    /> */}
                 </div>
+                <img src={otb}
+                        alt="On The Ball"
+                        className={`sidebar-icon ${!toggle ? 'hide' : ''}`}
+                    />
+            </div>
 
-                <div className="sidebar-content-wrapper">
+            <div className="sidebar-content-wrapper">
                 {sidebar.map((item, index) => {
-                    return  (<div className="sidebar-item" key={index}>
-                                <Link to={item.path} >{item.title}</Link>
+                    return  (<div className={`sidebar-item-${toggle ? 'open' : 'closed'}`} key={index}>
+                                <Link 
+                                    to={item.path}
+                                >
+                                    <div className='sidebar-icon'>{item.icon}</div>
+                                    <div className={`sidebar-item-title ${!toggle ? 'hide' : ''}`}>{item.title}</div>
+                                </Link>
                             </div>)
                 })}
-                </div>
             </div>
         </div>
     )

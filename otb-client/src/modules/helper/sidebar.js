@@ -1,12 +1,14 @@
+import * as RiIcons from 'react-icons/ai';
+
 const labels = [
-    "Home",
-    "Schedule",
-    "Contracts",
-    "Content",
-    "Reports",
-    "Invoicing",
-    "Notification",
-    "Settings"
+    ["Home", <RiIcons.AiFillHome />],
+    ["Schedule", <RiIcons.AiTwotoneCalendar />],
+    ["Contracts", <RiIcons.AiFillFilePdf />],
+    ["Content", <RiIcons.AiOutlineGlobal />],
+    ["Reports", <RiIcons.AiFillFolderAdd />],
+    ["Invoicing", <RiIcons.AiFillDollarCircle />],
+    ["Notification", <RiIcons.AiFillMail />],
+    ["Settings", <RiIcons.AiFillSetting />]
 ]
 
 // replace space with -
@@ -20,5 +22,5 @@ const transform = (path) => {
 
 // prepare data for sidebar
 export const sidebar = labels.map(item => {
-    return { title: item, path: `/${transform(item)}`}
+    return { title: item[0], path: `/${transform(item[0])}`, icon: item[1]}
 });
