@@ -1,9 +1,14 @@
+body {
+    margin: 0;
+}
+
 .container {
     border: none;
     margin: 0;
     padding: 0px;
     min-height: 100vh;
-    height: 100vh; 
+    height: 100vh;
+    display: flex;
 }
 
 .main {

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Context from '../context/index';
 import { Link, useNavigate } from 'react-router-dom';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMenu, AiOutlineLogout } from 'react-icons/ai';
 
 // internal import
 import otb from '../resources/images/on-the-ball-cover.jpg';
@@ -23,10 +23,6 @@ const Sidebar = () => {
                 <AiOutlineMenu className="toggle" onClick={() => setToggle(!toggle)}/>
                 <div className={`sidebar-header-contents ${!toggle ? 'hide' : ''}`}>
                     <h3>On The Ball</h3>
-                    {/* <img src={otb}
-                        alt="On The Ball"
-                        className="sidebar-icon"
-                    /> */}
                 </div>
                 <img src={otb}
                         alt="On The Ball"
@@ -37,14 +33,19 @@ const Sidebar = () => {
             <div className="sidebar-content-wrapper">
                 {sidebar.map((item, index) => {
                     return  (<div className={`sidebar-item-${toggle ? 'open' : 'closed'}`} key={index}>
-                                <Link 
-                                    to={item.path}
-                                >
+                                <Link to={item.title === 'Home' ? '/' : item.path}>
                                     <div className='sidebar-icon'>{item.icon}</div>
                                     <div className={`sidebar-item-title ${!toggle ? 'hide' : ''}`}>{item.title}</div>
                                 </Link>
                             </div>)
                 })}
+            </div>
+
+            <div className={`sidebar-item-${toggle ? 'open' : 'closed'}`}>
+                <Link to='/logout'>
+                    <div className='sidebar-icon'><AiOutlineLogout /></div>
+                    <div className={`sidebar-item-title ${!toggle ? 'hide' : ''}`}>Logout</div>
+                </Link>
             </div>
         </div>
     )
