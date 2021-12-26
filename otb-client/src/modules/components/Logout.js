@@ -7,7 +7,7 @@ const Logout = ({ location }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        context.actions.signOut();
+        context.actions.logout();
         navigate('/login');
     }, [location])
 

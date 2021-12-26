@@ -11,11 +11,8 @@ const Sidebar = () => {
     const context = useContext(Context.Context);
     const navigate = useNavigate();
     const [toggle, setToggle] = useState(false);
-    console.log(sidebar);
-
-    const handleClick = () => {};
-    
-    const handleLogout = () => {};
+    const [selected, setSelected] = useState('');
+    console.log(selected);
 
     return (
         <div className={`sidebar-wrapper-${toggle ? 'open' : 'closed'}`}>
@@ -33,9 +30,12 @@ const Sidebar = () => {
             <div className="sidebar-content-wrapper">
                 {sidebar.map((item, index) => {
                     return  (<div className={`sidebar-item-${toggle ? 'open' : 'closed'}`} key={index}>
-                                <Link to={item.title === 'Home' ? '/' : item.path}>
-                                    <div className='sidebar-icon'>{item.icon}</div>
-                                    <div className={`sidebar-item-title ${!toggle ? 'hide' : ''}`}>{item.title}</div>
+                                <Link 
+                                    to={item.title === 'Home' ? '/' : item.path} 
+                                    onClick={() => setSelected(item.title)}
+                                >
+                                    <div className={`sidebar-icon ${item.title === selected ? 'selected' : ''}`}>{item.icon}</div>
+                                    <div className={`sidebar-item-title ${!toggle ? 'hide' : ''} ${item.title === selected ? 'selected' : ''}`}>{item.title}</div>
                                 </Link>
                             </div>)
                 })}

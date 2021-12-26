@@ -64,7 +64,15 @@
         height: 30px;
         text-decoration: none;
         color: white;
+
+        .selected {
+            color: #DA4E92;
+            svg {
+                color: #DA4E92;
+            }
+        }
     }
+
 }
 
 .sidebar-item-title {
