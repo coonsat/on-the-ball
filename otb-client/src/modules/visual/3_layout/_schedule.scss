@@ -18,19 +18,38 @@
 }
 
 .bookings-container {
-    width: 100%;
+    width: auto;
+    height: 100%;
     display: flex;
     padding: 15px; 
     border: 2px solid red;
 }
 
 .bookings-view {
-    width: 65%;
-    height: 750px;
     border: 2px solid black;
+    height: 750px;
+
+    &-close {
+        width: 65%;
+        transition: width 2s; 
+    }
+
+    &-open {
+        width: 100%;
+        transition: width 2s;
+    }
 }
 
 .bookings-detail {
     width: 30%;
     border: 2px solid black;
+
+    &-close {
+        width: 0%;
+        display: none;
+    }
+
+    &-open {
+        width: 35%;
+    }
 }

@@ -1,10 +1,11 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import Context from '../context/index';
 import {AiFillCaretLeft, AiFillCaretRight, AiTwotoneCalendar } from 'react-icons/ai';
-import { addDays, format, subtractDays } from 'date-fns';
+import { add, format, subtractDays } from 'date-fns';
 
 // internal import
 import Topbar from './Topbar';
+import CalendarMonth from './CalendarMonth';
 
 const Schedule = () => {
     const context = useContext(Context.Context);
@@ -27,7 +28,7 @@ const Schedule = () => {
     };
 
     const searchBookings = () => {
-        console.log(search);
+        console.log(search.current.value);
     };
 
     return (
@@ -36,10 +37,10 @@ const Schedule = () => {
 
             <div className="page-container">
                 <div className="schedule-control">
-                    <AiFillCaretLeft onClick={() => changeDate(selectedDate - 1)} />
-                    {format(selectedDate, "EEEE, dd MM yyyy")}
+                    <AiFillCaretLeft onClick={() => changeDate( add(selectedDate, {days: -1}) )} />
+                    {format(selectedDate, "EEEE, dd MMM yyyy")}
                     <AiTwotoneCalendar />
-                    <AiFillCaretRight onClick={() => changeDate(selectedDate + 1)} />
+                    <AiFillCaretRight onClick={() => changeDate( add(selectedDate, {days: 1}) )} />
                     <div className="button-view-container">
                         <button className={`${selectedView === 'month' ? 'selected-button' : ''}`} onClick={() => changeView('month')}>Month</button>
                         <button className={`${selectedView === 'week' ? 'selected-button' : ''}`} onClick={() => changeView('week')}>Week</button>
@@ -49,18 +50,26 @@ const Schedule = () => {
                             id="search"
                             name="search"
                             type="text"
-                            value={search}
-                            onChange={() => searchBookings(search)}
-
-                            placeholder="Search..."/>
+                            ref={search}
+                            onChange={() => searchBookings()}
+                            placeholder="Search..."
+                        />
                     </div>
                 </div>
 
                 <div className="bookings-container">
-                    <div className="bookings-view">
-                        bookings view
+                    <div 
+                        className={`bookings-view-${selectedBooking === '' ? 'open' : 'close'}`} 
+                        onClick={() => setSelectedBooking('test')}
+                    >
+                        <div className={`bookings-month ${selectedView === 'month' ? '' : 'hide'}`}>
+                            <CalendarMonth />
+                        </div>
+                        <div className={`booings-week ${selectedView === 'week' ? '' : 'hide'}`}>
+                            week view
+                        </div>
                     </div>
-                    <div className="bookings-detail">
+                    <div className={`bookings-detail-${selectedBooking === '' ? 'close' : 'open'}`}>
                         bookings detail
                     </div>
                 </div>
