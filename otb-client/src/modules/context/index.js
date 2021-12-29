@@ -28,6 +28,24 @@ export class Provider extends Component {
         Cookies.remove('otb-client');
     }
 
+    getBookings = () => {
+        return api.api('/bookings', 'GET', null, true, true)
+                .then(response => response.data)
+                .catch(err => {
+                    console.log(err);
+                });
+    };
+
+    createBooking = booking => {
+        api.api('/bookings', 'POST', booking, true, this.authenticatedUser)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
+
     render() {
         const authenticatedUser = this.state;
         const value = {
@@ -35,7 +53,9 @@ export class Provider extends Component {
             api: this.api,
             actions: {
                 login: this.login,
-                logout: this.logout
+                logout: this.logout,
+                getBookings: this.getBookings,
+                createBooking: this.createBooking
             }
         };
 

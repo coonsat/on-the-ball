@@ -2,30 +2,30 @@ import React, { useState } from 'react';
 import { format, startOfWeek, startOfMonth, endOfMonth, endOfWeek, addDays, isSameMonth, isSameDay, parse, subMonths, addMonths } from "date-fns";
 
 
-const CalendarMonth = () => {
-    const [currentDate, setCurrentDate] = useState(new Date());
-    const [selectedDate, setSelectedDate] = useState(new Date());
+const CalendarMonth = ({currentDate, setCurrentDate }) => {
+    // const [currentDate, setCurrentDate] = useState(new Date());
+    // const [selectedDate, setSelectedDate] = useState(new Date());
 
-    const header = () => {
-        const dateFormat = "MMMM yyyy";
-        return (
-        <div className="header row flex-middle">
-            <div className="column col-start">
-                <div className="icon" onClick={prevMonth}>
-                chevron_left
-                </div>
-            </div>
-            <div className="column col-center">
-                <span>{format(currentDate, dateFormat)}</span>
-            </div>
-            <div className="column col-end">
-                <div className="icon" onClick={nextMonth}>
-                chevron_right
-                </div>
-            </div>
-        </div>
-        )
-    }
+    // const header = () => {
+    //     const dateFormat = "MMMM yyyy";
+    //     return (
+    //     <div className="header row flex-middle">
+    //         <div className="column col-start">
+    //             <div className="icon" onClick={prevMonth}>
+    //             chevron_left
+    //             </div>
+    //         </div>
+    //         <div className="column col-center">
+    //             <span>{format(currentDate, dateFormat)}</span>
+    //         </div>
+    //         <div className="column col-end">
+    //             <div className="icon" onClick={nextMonth}>
+    //             chevron_right
+    //             </div>
+    //         </div>
+    //     </div>
+    //     )
+    // }
 
     const days = () => {
         const dateFormat = "ddd";
@@ -57,10 +57,10 @@ const CalendarMonth = () => {
         days.push(
               <div 
                className={`column cell ${!isSameMonth(day, monthStart)
-               ? "disabled" : isSameDay(day, selectedDate) 
+               ? "disabled" : isSameDay(day, currentDate) 
                ? "selected" : "" }`} 
                key={day} 
-               onClick={() => onDateClick(parse(cloneDay))}
+               onClick={() => setCurrentDate( cloneDay )}
                > 
                <span className="number">{formattedDate}</span>
                <span className="bg">{formattedDate}</span>
@@ -75,19 +75,9 @@ const CalendarMonth = () => {
          }
          return <div className="body">{rows}</div>;
         }
-        const nextMonth = () => {
-           setCurrentDate(addMonths(currentDate, 1));
-        };
-        const prevMonth = () => {
-           setCurrentDate(subMonths(currentDate, 1));
-        };
-        const onDateClick = day => {
-        setSelectedDate(day);
-        }
 
     return (
         <div className="calendar">
-            <div>{header()}</div>
             <div>{days()}</div>
             <div>{cells()}</div>
         </div>

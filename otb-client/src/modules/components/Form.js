@@ -1,7 +1,10 @@
 import React from 'react';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
 const Form = ( props ) => {
     const {
+        header,
+        display,
         cancel,
         errors,
         submit,
@@ -20,7 +23,11 @@ const Form = ( props ) => {
     };
 
     return (
-        <div className="">
+        <div className={`modal-${display ? 'display' : 'hide'}`}>
+            <div className="modal-header">
+                {header}
+                <AiFillCloseCircle className="close" onClick={() => cancel()}/>
+            </div>
             <ErrorsDisplay errors={errors} />
             <form onsSubmit={handleSubmit}>
                 {elements()}

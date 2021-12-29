@@ -1,6 +1,8 @@
 .schedule-control {
     height: 60px;
     border: 2px solid $sidebar-bgcolor;
+    display: flex;
+    justify-content: space-between;
 }
 
 .button-view-container {
