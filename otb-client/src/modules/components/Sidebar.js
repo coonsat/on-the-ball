@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Context from '../context/index';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineLogout } from 'react-icons/ai';
 
 // internal import
@@ -9,7 +9,6 @@ import { sidebar } from '../helper/sidebar';
 
 const Sidebar = () => {
     const context = useContext(Context.Context);
-    const navigate = useNavigate();
     const [toggle, setToggle] = useState(false);
     const [selected, setSelected] = useState('');
     console.log(selected);

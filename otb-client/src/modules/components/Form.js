@@ -29,7 +29,7 @@ const Form = ( props ) => {
                 <AiFillCloseCircle className="close" onClick={() => cancel()}/>
             </div>
             <ErrorsDisplay errors={errors} />
-            <form onsSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 {elements()}
                 <div className="">
                     <button className="button large success" type="submit">{submitButtonText}</button>

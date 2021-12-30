@@ -15,7 +15,7 @@ const Schedule = () => {
     const [selectedBooking, setSelectedBooking] = useState('');
     const [newBooking, setNewBooking] = useState('');
     const search = useRef();
-    const bookings = [];
+    let bookings = [];
     const errors = [];
 
     // Variables for new booking
@@ -26,9 +26,16 @@ const Schedule = () => {
     const endDateTime = useRef();
     const sessionType = useRef();
     const repeat = useRef();
+    const repeatType = useRef();
 
-    useEffect(() => {
-        // bookings = context.actions.getBookings('Some Filter');
+    useEffect(async () => {
+        context.actions.getBookings()
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }, [selectedDate])
 
     const changeDate = ( newDate ) => {
@@ -63,7 +70,14 @@ const Schedule = () => {
 
     const submit = e => {
         e.preventDefault();
-        context.actions.createBooking( booking );
+        const newError = {};
+        context.actions.createBooking( booking )
+            .then(res => {
+                cancel();
+            })
+            .catch(err => {
+                console.log('New booking not successful')
+            });
     };
 
     return (
@@ -137,6 +151,17 @@ const Schedule = () => {
                                         ref={repeat}
                                         onChange={() => change(repeat)}
                                     />
+                                    <label htmlFor="repeat">Timeframe</label>
+                                    <select
+                                        id="repeatType"
+                                        name="repeatType"
+                                        ref={repeatType}
+                                        onChange={() => change(repeatType)}    
+                                    >
+                                        <option value="single">Weekly</option>
+                                        <option value="group">Fortnightly</option>
+                                        <option value="group">Monthly</option>
+                                    </select>
                                 </Fragment>
                             )}
                         >
@@ -146,6 +171,8 @@ const Schedule = () => {
                     <div className="button-view-container">
                         <button className={`${selectedView === 'month' ? 'selected-button' : ''}`} onClick={() => changeView('month')}>Month</button>
                         <button className={`${selectedView === 'week' ? 'selected-button' : ''}`} onClick={() => changeView('week')}>Week</button>
+                        <button className={`${selectedView === 'day' ? 'selected-button' : ''}`} onClick={() => changeView('day')}>Day</button>
+                        <button className={`${selectedView === 'list' ? 'selected-button' : ''}`} onClick={() => changeView('list')}>List</button>
                     </div>
                     <div className="search">
                         <input 

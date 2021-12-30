@@ -1,31 +1,7 @@
-import React, { useState } from 'react';
-import { format, startOfWeek, startOfMonth, endOfMonth, endOfWeek, addDays, isSameMonth, isSameDay, parse, subMonths, addMonths } from "date-fns";
-
+import React from 'react';
+import { format, startOfWeek, startOfMonth, endOfMonth, endOfWeek, addDays, isSameMonth, isSameDay } from "date-fns";
 
 const CalendarMonth = ({currentDate, setCurrentDate }) => {
-    // const [currentDate, setCurrentDate] = useState(new Date());
-    // const [selectedDate, setSelectedDate] = useState(new Date());
-
-    // const header = () => {
-    //     const dateFormat = "MMMM yyyy";
-    //     return (
-    //     <div className="header row flex-middle">
-    //         <div className="column col-start">
-    //             <div className="icon" onClick={prevMonth}>
-    //             chevron_left
-    //             </div>
-    //         </div>
-    //         <div className="column col-center">
-    //             <span>{format(currentDate, dateFormat)}</span>
-    //         </div>
-    //         <div className="column col-end">
-    //             <div className="icon" onClick={nextMonth}>
-    //             chevron_right
-    //             </div>
-    //         </div>
-    //     </div>
-    //     )
-    // }
 
     const days = () => {
         const dateFormat = "ddd";

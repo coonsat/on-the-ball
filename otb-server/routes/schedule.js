@@ -17,16 +17,18 @@ Sequelize.DATE.prototype._stringify = function _stringify(date, options) {
 // Get bookings - TO DO - get user id from token.
 router.get('/', authenticateToken, asyncHandler( async(req, res) => {
     try {
-        const startDate = req.body.filter.timeFrame.start;
-        const endDate = req.body.filter.timeFrame.end;
-        const userId = req.body.filter.userId;
-        const contractId = req.body.filter.contractId;
-        const customerId = req.body.filter.customerId;
+        schedule = [];
+        // const startDate = req.body.filter.timeFrame.start;
+        // const endDate = req.body.filter.timeFrame.end;
+        // const userId = req.body.filter.userId;
+        // const contractId = req.body.filter.contractId;
+        // const customerId = req.body.filter.customerId;
 
-        if (startDate && endDate)
-        const schedule = await Booking.findAll({
-            where: {userId: req.user.id}
-        });
+        if (startDate && endDate) {
+            schedule = await Booking.findAll({
+                where: {userId: req.user.id}
+            });   
+        }
 
         return res.status(201).json(schedule).end();
 

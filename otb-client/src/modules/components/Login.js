@@ -1,22 +1,30 @@
-import React,  { useContext, useState } from 'react';
+import React,  { useContext, useState, useRef } from 'react';
 import { Fragment } from 'react/cjs/react.production.min';
 import { Link } from 'react-router-dom';
 
 // Component import
+import Context from '../context/index';
 import Form from './Form';
 
 // Other import
 import logo from '../resources/images/on-the-ball-cover.jpg';
 
 const Login = () => {
-    const [emailAddress, setEmailAddress] = useState('');
-    const [password, setPassword] = useState('');
+    const context = useContext(Context.Context);
+    const emailAddress = useRef();
+    const password = useRef();
     const [errors, setErrors] = useState('');
+    const user = {};
 
-    const handleChange = () => {};
+    const handleChange = (variable) => {
+        const name = variable.current.id;
+        const value = variable.current.value;
+        user[name] = value;
+    };
 
-    const submit = () => {
-        console.log('Sign in');
+    const submit = event => {
+        event.preventDefault();
+        
     }
 
     return (
@@ -38,11 +46,11 @@ const Login = () => {
                                 <Fragment>
                                         <label htmlFor="emailAddress">Email Address</label>
                                         <input
-                                        id="email"
-                                        name="email"
+                                        id="emailAddress"
+                                        name="emailAddress"
                                         type="email"
-                                        value={emailAddress}
-                                        onChange={handleChange}
+                                        ref={emailAddress}
+                                        onChange={() => handleChange(emailAddress)}
                                         placeholder="Email" />
 
                                         <label htmlFor="password">Password</label> 
@@ -50,8 +58,8 @@ const Login = () => {
                                         id="password"
                                         name="password"
                                         type="password"
-                                        value={password}
-                                        onChange={handleChange}
+                                        ref={password}
+                                        onChange={() => handleChange(password)}
                                         placeholder="Password" />
                                 </Fragment>
                             )}

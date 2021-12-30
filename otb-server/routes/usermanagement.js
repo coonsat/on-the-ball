@@ -8,6 +8,7 @@ const { User, Customer } = require('../models');
 
 // Middleware methods
 const { asyncHandler } = require('../middleware/async-handler');
+const { authUser } = require('../middleware/auth-user');
 
 // Create user
 router.post('/user', asyncHandler(async(req, res) => {

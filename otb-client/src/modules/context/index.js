@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie'
-import api from '../helper/api';
+import API from '../helper/api';
+import { authServer, server } from '../config/primary';
 
 const Context = React.createContext();
 
@@ -16,10 +17,20 @@ export class Provider extends Component {
         this.state = {
             authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null
         }
-        this.api = new api();
+        this.API = new API();
     }
 
-    login = async ( emailAddress, password ) => {};
+    login = async ( user ) => {
+        return await this.API.call(`${authServer}/authentication/login`, 'POST', user, false, false)
+            .then(response => {
+                this.setState({
+                    user: response.data
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
 
     logout = () => {
         this.setState({
@@ -28,8 +39,8 @@ export class Provider extends Component {
         Cookies.remove('otb-client');
     }
 
-    getBookings = () => {
-        return api.api('/bookings', 'GET', null, true, true)
+    getBookings = async () => {
+        return await this.API.call('/schedule', 'GET', null, false, true)
                 .then(response => response.data)
                 .catch(err => {
                     console.log(err);
@@ -37,7 +48,7 @@ export class Provider extends Component {
     };
 
     createBooking = booking => {
-        api.api('/bookings', 'POST', booking, true, this.authenticatedUser)
+        this.API.call('/schedule', 'POST', booking, true, this.authenticatedUser)
             .then(response => {
                 console.log(response);
             })

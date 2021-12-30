@@ -1,4 +1,3 @@
-import * as address from '../config/primary';
 import axios from 'axios';
 
 /** 
@@ -11,9 +10,8 @@ import axios from 'axios';
  * @return Returns the response from authentication/normal server  
 */
 
-export default class api {
-    api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
-        const location = address.URL + path;
+export default class API {
+    call(location, method = 'GET', body = null, requiresAuth = false, credentials = null) {
 
         const options = {
             method,
