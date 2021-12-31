@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Context from '../context/index';
 import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineLogout } from 'react-icons/ai';
@@ -9,13 +9,18 @@ import { sidebar } from '../helper/sidebar';
 
 const Sidebar = () => {
     const context = useContext(Context.Context);
-    const authUser = context.authenticatedUser;
+    // const authUser = context.authenticatedUser;
+    const [authUser, setAuthUser] = useState('');
     const [toggle, setToggle] = useState(false);
     const [selected, setSelected] = useState('');
     console.log(authUser);
 
+    useEffect(() => {
+        setAuthUser(context.authenticatedUser);
+    }, [authUser])
+
     return (
-        <div className={`sidebar-wrapper-${toggle ? 'open' : 'closed'} : 'hide'`}>
+        <div className={authUser ? `sidebar-wrapper-${toggle ? 'open' : 'closed'}` : "hide"}>
             <div className="sidebar-header">
                 <AiOutlineMenu className="toggle" onClick={() => setToggle(!toggle)}/>
                 <div className={`sidebar-header-contents ${!toggle ? 'hide' : ''}`}>

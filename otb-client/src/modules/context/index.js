@@ -21,18 +21,29 @@ export class Provider extends Component {
     }
 
     login = async ( credentials ) => {
+        // const user = await this.API.call(`${authServer}/authentication/login`, 'POST', null, true, credentials)
+        //             .then(response => {
+        //                 this.setState({
+        //                     authenticatedUser: response.data.user
+        //                 })
+        //             })
+        //             .catch(err => {
+        //                 console.log(err);
+        //             });
+        //             Cookies.set('otb-client', JSON.stringify(this.state.authenticatedUser), { expires: 10 });
+        // return user;
+
         return await this.API.call(`${authServer}/authentication/login`, 'POST', null, true, credentials)
-            .then(response => {
-                this.setState({
-                    authenticatedUser: response.data.user
-                });
-                Cookies.set('otb-client', JSON.stringify(this.state.authenticatedUser), { expires: 10 });
-                return response.status;
-            })
-            .catch(err => {
-                console.log(err);
-                return err;
-            });
+                        .then(response => {
+                            this.setState({
+                                authenticatedUser: response.data.user
+                            });
+                            Cookies.set('otb-client', JSON.stringify(this.state.authenticatedUser), { expires: 10 });
+                            return response.status;
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
     };
 
     logout = () => {
@@ -61,8 +72,9 @@ export class Provider extends Component {
     };
 
     render() {
+        const { authenticatedUser } = this.state;
         const value = {
-            authenticatedUser: this.authenticatedUser,
+            authenticatedUser,
             api: this.api,
             actions: {
                 login: this.login,
