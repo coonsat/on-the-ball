@@ -13,9 +13,12 @@ import axios from 'axios';
 export default class API {
     call(location, method = 'GET', body = null, requiresAuth = false, credentials = null) {
 
-        const options = {
+        let options = {
             method,
-            'CONTENT-TYPE': 'application/json; charset=utf-8'
+            body,
+            headers : {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
         }
 
         if (body != null) {
@@ -23,8 +26,8 @@ export default class API {
         }
 
         if ( requiresAuth ) {
-            const credentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
-            options.headers['Authorization'] = `Basic ${credentials}`;
+            const auth = btoa(`${credentials.emailAddress}:${credentials.password}`);
+            options.headers['Authorization'] = `Basic ${auth}`;
         }
 
         return axios(location, options);

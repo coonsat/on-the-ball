@@ -9,12 +9,13 @@ import { sidebar } from '../helper/sidebar';
 
 const Sidebar = () => {
     const context = useContext(Context.Context);
+    const authUser = context.authenticatedUser;
     const [toggle, setToggle] = useState(false);
     const [selected, setSelected] = useState('');
-    console.log(selected);
+    console.log(authUser);
 
     return (
-        <div className={`sidebar-wrapper-${toggle ? 'open' : 'closed'}`}>
+        <div className={`sidebar-wrapper-${toggle ? 'open' : 'closed'} : 'hide'`}>
             <div className="sidebar-header">
                 <AiOutlineMenu className="toggle" onClick={() => setToggle(!toggle)}/>
                 <div className={`sidebar-header-contents ${!toggle ? 'hide' : ''}`}>

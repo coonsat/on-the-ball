@@ -13,22 +13,25 @@ export class Provider extends Component {
 
     constructor() {
         super();
-        this.cookie = Cookies.get('otb-client-authenticate');
+        this.cookie = Cookies.get('otb-client');
         this.state = {
             authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null
         }
         this.API = new API();
     }
 
-    login = async ( user ) => {
-        return await this.API.call(`${authServer}/authentication/login`, 'POST', user, false, false)
+    login = async ( credentials ) => {
+        return await this.API.call(`${authServer}/authentication/login`, 'POST', null, true, credentials)
             .then(response => {
                 this.setState({
-                    user: response.data
+                    authenticatedUser: response.data.user
                 });
+                Cookies.set('otb-client', JSON.stringify(this.state.authenticatedUser), { expires: 10 });
+                return response.status;
             })
             .catch(err => {
                 console.log(err);
+                return err;
             });
     };
 
@@ -58,9 +61,8 @@ export class Provider extends Component {
     };
 
     render() {
-        const authenticatedUser = this.state;
         const value = {
-            authenticatedUser,
+            authenticatedUser: this.authenticatedUser,
             api: this.api,
             actions: {
                 login: this.login,

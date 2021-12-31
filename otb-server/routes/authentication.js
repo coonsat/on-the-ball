@@ -29,10 +29,6 @@ router.post('/login', authenticateUser, asyncHandler( async(req, res) => {
     res.status(201).json({ user });
 }));
 
-// only temp. This token needs to be written to the user table
-let refreshTokens = [];
-
-
 router.post('/token', (req, res) => {
         const refreshToken = req.body.token;
         if ( refreshToken === null ) return res.status(401).end();
